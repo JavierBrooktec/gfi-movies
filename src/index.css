@@ -1,24 +1,36 @@
-@import "./design-tokens/scss-variables.scss";
-@import "./design-tokens/css-variables.scss";
+@import './design-tokens/scss-variables.scss';
+@import './design-tokens/css-variables.scss';
 
-html, body {
+html,
+body {
   min-height: 100%;
 }
 
 body {
   background-image: url('./assets/a.jpg'),
-    linear-gradient(
-      90deg,
-      rgba(48, 56, 73, 0.7) 0%,
-      rgba(48, 56, 73, 0.7) 100%
-    );
-    
+    linear-gradient(90deg, rgba(48, 56, 73, 0.2) 0%, rgba(48, 56, 73, 0.2) 100%);
+
   background-blend-mode: multiply;
-  font-size: 1.125rem;
+  font-size: 1rem;
   margin: 0;
   padding: 0;
   font-weight: 400;
   line-height: 1.8;
   font-family: 'Merriweather', serif;
   color: #ffffff;
+
+}
+
+@media only screen and (min-width: 750px) {
+  body {
+    font-size: 1.125rem;
+  }
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-primary);
 }

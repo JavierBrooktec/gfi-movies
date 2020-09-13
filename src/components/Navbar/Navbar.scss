@@ -1,0 +1,138 @@
+.Navbar {
+  background-color: var(--color-secondary);
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+
+  .Navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0 auto;
+
+    @media only screen and (min-width: 900px) {
+      width: 90%;
+    }
+
+    button {
+      background-color: Transparent;
+      color: white;
+      border: none;
+      height: min-content;
+      outline: none;
+      cursor: pointer;
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+
+    .form {
+      display: flex;
+      justify-content: center;
+      flex-grow: 2;
+      z-index: 1;
+
+      input {
+        border-radius: 0.25em 0em 0em 0.25em;
+        border: 2px solid white;
+        background-color: white;
+        color: var(--color-primary);
+        width: 75%;
+
+        padding: 0.35em;
+        outline: none;
+      }
+
+      .search {
+        background-color: var(--color-primary);
+        color: white;
+        border-radius: 0em 0.25em 0.25em 0em;
+        height: initial;
+        padding: 0 1em;
+        outline: none;
+
+        &:hover {
+          background-color: var(--color-primary-dark);
+        }
+
+        @media only screen and (min-width: 750px) {
+          font-size: 1.125rem;
+        }
+      }
+    }
+
+    .is-active {
+      display: none;
+    }
+
+    .home-button,
+    .menu-button {
+      z-index: 1;
+      @media only screen and (min-width: 750px) {
+        font-size: 1.25rem;
+      }
+    }
+
+    .menu-button {
+      @media only screen and (min-width: 750px) {
+        display: none;
+      }
+    }
+
+    .menu {
+      visibility: hidden; /* hides menu */
+      opacity: 0;
+      list-style-type: none;
+      margin: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      z-index: 0;
+      transform: translateY(-2em);
+      transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s,
+        z-index 0s linear 0.01s;
+      background-color: var(--color-secondary);
+      padding: .5em 0;
+      display: flex;
+      flex-direction: column;
+      
+
+      @media only screen and (min-width: 750px) {
+        display: flex;
+        position: unset;
+        flex-direction: row;
+        width: auto;
+        justify-content: space-around;
+        visibility: visible; /* shows menu */
+        opacity: 1;
+        z-index: 2;
+        transform: translateY(0%);
+        transition-delay: 0s, 0s, 0.3s;
+
+        .link {
+          border-left: solid 2px #fff;
+          margin-left: 0.5em;
+          padding-left: 0.5em;
+
+          &:first-child {
+            border-left: none;
+            margin-left: 0;
+          }
+        }
+      }
+
+      &.toggled {
+        visibility: visible; /* shows menu */
+        opacity: 1;
+        z-index: 2;
+        transform: translateY(0%);
+        transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+      }
+    }
+  }
+}
