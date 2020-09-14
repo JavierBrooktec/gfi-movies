@@ -1,34 +1,25 @@
 import React, { useEffect, useState } from 'react'
 
-// import { getRandomFilm } from '../../helpers/getRandomFilm';
 
 
 import NavBar from '../../components/Navbar';
-import FilmCard from '../../components/FilmCard';
+import FilmsLayout from '../../components/FilmsLayout';
+
+import {addToFav} from '../../helpers'
+
+
 import {
     faFilm
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {filmType, response} from '../../types';
 
 
 
 import './Home.scss';
 
-export type filmType = {
-    imdbID: string,
-    Title: string,
-    Year: string,
-    Poster: string,
-    Type: string,
-};
 
 
-
-export type response = {
-    Response: string,
-    Search: filmType[],
-    totalResults: number,
-};
 
 
 
@@ -39,6 +30,14 @@ const Movies = () => {
     const [page, setPage] = useState(1);
     const [roll, setRoll] = useState(false);
     const [end, setEnd] = useState(false);
+
+
+    const callback = (type:string, id:string) => {
+        addToFav(id);
+    }
+
+
+
 
 
     const handleScroll = (e: React.UIEvent<HTMLElement>) => {
@@ -91,26 +90,11 @@ const Movies = () => {
 
 
 
-    const filmsCards = films.length ?
-        films.map((f: filmType) =>
-            <FilmCard key={`film-${f.imdbID}`} year={f.Year} poster={f.Poster} title={f.Title} />) :
-        (search.length === 0 ?
-            <h1 className="noResult">Type in the Search Bar to start</h1> :
-            <h1 className="noResult">Sorry we found no matches </h1>
-        );
-
-
-
-
 
     return (
-        <div className="Home" onScroll={handleScroll}>
+        <div className="Home Has-NavBar-container" onScroll={handleScroll}>
             <NavBar search={setSearch} />
-            <div className="FilmCards-Container">
-                {
-                    filmsCards
-                }
-            </div>
+            <FilmsLayout films={films} search={search} add={true} callback={callback}/>
             {roll &&
                 <div className="roll">
                     <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />

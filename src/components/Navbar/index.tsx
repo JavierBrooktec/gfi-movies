@@ -59,13 +59,10 @@ const NavBar = (props) => {
                         <NavLink activeClassName="is-active" to="/login">Login</NavLink>
                     </li>
                     <li className="link">
-                        <NavLink activeClassName="is-active" to="/movies">Movies</NavLink>
-                    </li>
-                    <li className="link">
                         <NavLink activeClassName="is-active" to="/favourites">Favourites</NavLink>
                     </li>
                     <li className="link">
-                        <NavLink activeClassName="is-active" to="/favourites">Sign In</NavLink>
+                        <NavLink  activeClassName="is-active" to="/favourites">Sign In</NavLink>
                     </li>
                     <li className="link">
                         <NavLink activeClassName="is-active" to="/favourites">Log Out</NavLink>

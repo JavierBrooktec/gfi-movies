@@ -2,24 +2,26 @@ import React from 'react'
 import noPosterFound from '../../assets/no-poster.jpg'
 import './FilmCard.scss';
 
-type FilmCardProps = {
+export type FilmCardProps = {
+    id: string,
     title: string,
     year: string,
-    poster: string
+    poster: string,
+    add?: boolean,
+    remove?: boolean,
+    callback?: any
+
 }
 
-const FilmCard = ({ poster, title, year }: FilmCardProps) => {
+const FilmCard = ({ id, poster, title, year, add = false, remove = false, callback }: FilmCardProps) => {
 
     const posterSource = poster === 'N/A' ? noPosterFound : poster;
 
-    return (
-        // <div classNameName="FilmCard">
-        //     <h3 classNameName="FilmCard-title">{title}</h3>
-        //     <div className="FilmCard-content" style={{backgroundImage: `url(${posterSource})`}}>
-        //         <p>year: {year}</p>
-        //     </div>
-        // </div>
+    const handleCallback = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            callback(e.currentTarget.name, id);
+    }
 
+    return (
         <div className="flip-card">
             <div className="flip-card-inner">
                 <div className="flip-card-front">
@@ -30,7 +32,8 @@ const FilmCard = ({ poster, title, year }: FilmCardProps) => {
                         <h1 className="flip-card-title">{title}</h1>
                         <h3 className="flip-card-subtitle">year: {year}</h3>
                     </div>
-                    <button className="button" type="button">Add to favourites</button>
+                    {add && <button name="add" className="button" type="button" onClick={handleCallback} >Add to fav</button>}
+                    {remove && <button name="remove" className="button" type="button" onClick={handleCallback} >remove from fav</button>}
                 </div>
             </div>
         </div>

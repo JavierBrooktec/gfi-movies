@@ -2,8 +2,8 @@
 .flip-card {
   border-radius: 0.25em;
   background-color: transparent;
-  width: 175px;
-  height: 175px;
+  width: 150px;
+  height: 150px;
 
 
   .flip-card-content{
@@ -37,8 +37,8 @@
 
 
 .flip-card-img {
-  width: 175px;
-  height: 175px;
+  width: 150px;
+  height: 150px;
 
   @media only screen and (min-width: 750px) {
     width: 250px;

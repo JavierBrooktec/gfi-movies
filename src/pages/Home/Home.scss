@@ -1,40 +1,14 @@
-.Home {
-  width: 100%;
-  max-height: 100vh;
-  overflow-y: scroll;
-  padding-top: 4em;
-
-  @media only screen and (min-width: 750px) {
-    padding-top: 5em;
-  }
-}
-
-.noResult {
-  text-align: center;
-  left: 50%;
-  position: absolute;
-  bottom: 50%;
-  width: 250px;
-  margin-left: -125px;
-
-  @media only screen and (min-width: 750px) {
-    width: 600px;
-    margin-left: -300px;
-  }
-}
-
 .roll {
   width: 200px;
   position: absolute;
   z-index: 2;
-  color: var(--color-primary);
   bottom: 50%;
   margin-left: -50px;
   margin-bottom: -50px;
   left: 50%;
 
   .roll-icon {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 }
 
@@ -70,17 +44,5 @@
 
   to {
     transform: translate3d(0, 0, 0);
-  }
-}
-
-.FilmCards-Container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-  grid-gap: 1em;
-  margin: 0 auto;
-  width: 90%;
-
-  @media only screen and (min-width: 750px) {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }

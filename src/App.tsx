@@ -8,6 +8,7 @@ import {
 
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Favourites from './pages/Favourites';
 import NoMatch from './pages/NoMatch';
 
 
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route path="/movies">
           <Home />
+        </Route>
+        <Route path="/favourites">
+          <Favourites />
         </Route>
         <Route path="/login">
           <Login />
