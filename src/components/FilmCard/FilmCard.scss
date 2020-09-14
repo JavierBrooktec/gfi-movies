@@ -2,21 +2,27 @@
 .flip-card {
   border-radius: 0.25em;
   background-color: transparent;
-  width: 150px;
-  height: 150px;
+  width: 175px;
+  height: 175px;
+
+
+  .flip-card-content{
+    width: 90%;
+  }
 
   .flip-card-title{
-    font-size: 1rem;
+    color: var(--color-primary-dark);
+    font-size: .875rem;
   }
   .flip-card-subtitle{
-    font-size: .75rem;
+    font-size: .65rem;
   }
   @media only screen and (min-width: 750px) {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
 
     .flip-card-title{
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     }
     .flip-card-subtitle{
       font-size: 1rem;
@@ -26,16 +32,17 @@
 
   perspective: 1000px;
   margin: 0 auto;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
+
 .flip-card-img {
-  width: 150px;
-  height: 150px;
+  width: 175px;
+  height: 175px;
 
   @media only screen and (min-width: 750px) {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   }
 }
 

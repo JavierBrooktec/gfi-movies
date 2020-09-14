@@ -9,8 +9,10 @@ body,
 }
 
 body {
-  background-image: url('./assets/a.jpg');
-  background-color: rgba(48, 56, 73, 0.2);
+  background-image: url('./assets/cine-background.jpg');
+  background-color: rgba(48, 56, 73, 0.7);
+  background-repeat: initial;
+  background-size: 200px 200px;
 
   background-blend-mode: multiply;
   font-size: 1rem;
@@ -41,14 +43,15 @@ a:hover {
   background-color: transparent;
   padding: .25em .5em;
   border-radius: .25em;
-  color: var(--color-primary);
-  border-color: var(--color-primary);
+  color: white;
+  border-color: white;
   border: 2px solid;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .button:hover {
-  color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+
 }

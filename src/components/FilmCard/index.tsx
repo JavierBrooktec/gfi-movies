@@ -26,7 +26,7 @@ const FilmCard = ({ poster, title, year }: FilmCardProps) => {
                     <img src={posterSource} alt={`poster-${title}`} className="flip-card-img" />
                 </div>
                 <div className="flip-card-back" style={{ backgroundImage: `url(${posterSource}), linear-gradient(90deg, rgba(48, 56, 73, 0.2) 0%, rgba(48, 56, 73, 0.2) 100%)` }}>
-                    <div>
+                    <div className="flip-card-content">
                         <h1 className="flip-card-title">{title}</h1>
                         <h3 className="flip-card-subtitle">year: {year}</h3>
                     </div>
