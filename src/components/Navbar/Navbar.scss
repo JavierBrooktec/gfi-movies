@@ -1,9 +1,9 @@
 .Navbar {
   background-color: var(--color-secondary);
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
 
   .Navbar-container {
     display: flex;

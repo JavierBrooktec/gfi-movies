@@ -1,0 +1,21 @@
+.FilmCard {
+
+  .FilmCard-title {
+    white-space: nowrap;
+    text-align: center;
+  }
+  .FilmCard-content {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 300px;
+    max-height: initial !important;
+    transition: transform ease-in 0.3s;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}

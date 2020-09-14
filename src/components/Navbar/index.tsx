@@ -45,7 +45,7 @@ const NavBar = (props) => {
                 </NavLink>
 
                 <form className="form">
-                    <input type="search" placeholder="Search..." aria-label="Search" value={title} onChange={handleChangeInput} onKeyDown={handleEnterTitle} />
+                    <input type="search" autoFocus placeholder="Search..." aria-label="Search" value={title} onChange={handleChangeInput} onKeyDown={handleEnterTitle} />
                     <button className="search" type="submit" onClick={handleClickSubmit}><FontAwesomeIcon icon={faSearch} /></button>
                 </form>
 

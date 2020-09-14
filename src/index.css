@@ -2,8 +2,10 @@
 @import './design-tokens/css-variables.scss';
 
 html,
-body {
-  min-height: 100%;
+body,
+#root,
+.App {
+  height: 100%;
 }
 
 body {
