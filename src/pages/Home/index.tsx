@@ -71,10 +71,9 @@ const Movies = () => {
                         setRoll(false);
                         return;
                     }
-                    setTimeout(() => {
-                        setFilms((f: filmType[]) => { return [...f, ...Search] });
-                        setRoll(false);
-                    }, 100);
+
+                    setFilms((f: filmType[]) => { return [...f, ...Search] });
+                    setRoll(false);
                 })
                 .catch((e) => { console.warn(e); setRoll(false); });
         }
@@ -94,7 +93,7 @@ const Movies = () => {
 
     const filmsCards = films.length ?
         films.map((f: filmType) =>
-        <FilmCard key={`film-${f.imdbID}`} year={f.Year} poster={f.Poster} title={f.Title} />) :
+            <FilmCard key={`film-${f.imdbID}`} year={f.Year} poster={f.Poster} title={f.Title} />) :
         (search.length === 0 ?
             <h1 className="noResult">Type in the Search Bar to start</h1> :
             <h1 className="noResult">Sorry we found no matches </h1>
