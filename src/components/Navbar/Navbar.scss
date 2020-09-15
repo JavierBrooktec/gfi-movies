@@ -69,6 +69,9 @@
     .is-active {
       color: var(--color-primary);
     }
+    .is-active-no-display {
+      display: none;
+    }
 
     .home-button,
     .menu-button {
@@ -82,6 +85,18 @@
     .menu-button {
       @media only screen and (min-width: 750px) {
         display: none;
+      }
+    }
+
+    .button-logOut {
+      font-size: 1rem;
+      border-radius: 0;
+      @media only screen and (min-width: 750px) {
+        font-size: 1.25rem;
+        border-left: 2px solid white;
+        margin-left: 0.5em;
+        padding: 0em;
+        padding-left: 0.5em;
       }
     }
 

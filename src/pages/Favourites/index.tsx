@@ -46,7 +46,7 @@ const Favourites = () => {
     }
 
     useEffect(() => {
-        if(notification === 'show'){
+        if (notification === 'show') {
             setTimeout(() => {
                 setNotification('hide');
                 setTimeout(() => {
@@ -56,15 +56,20 @@ const Favourites = () => {
         }
     }, [notification]);
 
-    
+
 
     useEffect(() => {
-        const previousData = window.localStorage.getItem("favourites");
+
+        const userData: any = window.sessionStorage.getItem('user');
+        const { name } = JSON.parse(userData);
+        const previousData = window.localStorage.getItem(name);
 
         if (previousData) {
-            const data: string[] = JSON.parse(previousData);
 
-            const filmsArr = Promise.all(data.map((id) => getMoviebyId(id)));
+            const previousDataJson = JSON.parse(previousData);
+            const { favourites } = previousDataJson
+
+            const filmsArr = Promise.all(favourites.map((id) => getMoviebyId(id)));
 
             filmsArr.then(setFilms).catch(console.warn);
         }
@@ -76,7 +81,7 @@ const Favourites = () => {
         <div className="Favourites Has-NavBar-container" >
             <div className="body-container">
                 <NavBar search={setSearch} />
-                <h1 className="Favourites-title">Your favourites <span role="img">♥️</span></h1>
+                <h1 className="Favourites-title">Your favourites <span aria-label="heart" role="img">♥️</span></h1>
                 <FilmsLayout films={films} search={search} remove={true} callback={callback} />
             </div>
             <div className="notification-container" id="notification-container">

@@ -1,0 +1,113 @@
+.ControledForm {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+  }
+
+  display: flex;
+  justify-content: center;
+  margin-top: 6em;
+
+  .login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+    width: 90%;
+    padding: 15px;
+    background-color: rgba(48, 56, 73, 0.8);
+    color: white;
+    box-shadow: -4px 4px 12px 1px rgba(0, 0, 0, 0.4);
+    max-width: 400px;
+
+    @media only screen and (min-width: 750px) {
+      width: 380px;
+      padding: 30px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      font-size: 1.5rem;
+      font-weight: 600;
+
+      @media only screen and (min-width: 750px) {
+        width: 380px;
+        padding: 1em;
+        font-size: 2rem;
+        margin-bottom: 0;
+      }
+    }
+    .field {
+      background-color: #fff;
+      width: 100%;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        color: #222;
+        width: 40px;
+      }
+      input {
+        width: 100%;
+        height: 35px;
+        font-size: 1.1rem;
+        padding: 5px;
+        color: var(--color-secondary);
+        border: none;
+
+        @media only screen and (min-width: 750px) {
+          height: 45px;
+        }
+
+        &::placeholder {
+          color: #95a5a6;
+        }
+      }
+    }
+  }
+
+  input:focus,
+  input:active,
+  input:hover {
+    outline: none;
+  }
+
+  .submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 35px;
+    margin-bottom: 35px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: var(--color-primary);
+    border: none;
+    transition: all 0.2s linear;
+
+    @media only screen and (min-width: 750px) {
+      height: 45px;
+      margin-bottom: 45px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--color-primary-dark);
+    }
+  }
+
+  .login-form-copy {
+    margin-bottom: 15px;
+    a {
+      text-decoration: none;
+      color: var(--color-primary);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

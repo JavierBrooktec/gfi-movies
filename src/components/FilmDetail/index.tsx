@@ -4,9 +4,6 @@ import noPosterFound from '../../assets/no-poster.jpg'
 import useResize from '../../hooks/useResize';
 
 import './FilmDetail.scss';
-import {
-    useHistory
-} from 'react-router-dom'
 
 export type FilmDetailProps = {
     imdbID: string,
@@ -90,8 +87,8 @@ const FilmDetail = ({
                     {Plot}
                 </p>
                 <div className="buttons-container">
-                    <button name="add" className="button" type="button" onClick={handleCallback}>Add to fav</button>
-                    <button name="remove" className="button" type="button"  onClick={handleCallback}>remove from fav</button>
+                   { add && <button name="add" className="button" type="button" onClick={handleCallback}>Add to fav</button>}
+                    { remove && <button name="remove" className="button" type="button"  onClick={handleCallback}>remove from fav</button>}
                 </div>
 
 

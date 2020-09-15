@@ -12,7 +12,10 @@ function useInput(param: string = '', callback?: any): any[] {
         }
         
     }
-    return [state, setInput, handleEnter]
+    const reset = () => {
+        setState("");
+    }
+    return [state, setInput, handleEnter, reset]
 }
 
 export default useInput;

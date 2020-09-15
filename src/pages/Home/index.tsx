@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react';
 
 
 
 import NavBar from '../../components/Navbar';
 import FilmsLayout from '../../components/FilmsLayout';
+import { LogedContext } from '../../App';
 
-import { addToFav, getlastSearch, addlastSearch } from '../../helpers'
+import { addToFav } from '../../helpers'
 
 
 import {
     faFilm
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { filmType, response } from '../../types';
+import { filmType, responseType } from '../../types';
 
 
 
@@ -52,7 +53,7 @@ const Movies = () => {
 
     }
 
-    async function getMovies(p = 1): Promise<response> {
+    async function getMovies(p = 1): Promise<responseType> {
         const { REACT_APP_API_KEY } = process.env;
         let response = await fetch(`http://www.omdbapi.com/?apikey=${REACT_APP_API_KEY}&type=movie&s=${search}&page=${p}`);
         let data = await response.json();
@@ -66,7 +67,7 @@ const Movies = () => {
 
 
     useEffect(() => {
-        if(notification==='show'){
+        if (notification === 'show') {
             setTimeout(() => {
                 setNotification('hide');
                 setTimeout(() => {
@@ -102,12 +103,14 @@ const Movies = () => {
         setRoll(false);
     }, [search]);
 
-    
+    const { logged } = useContext(LogedContext);
+
+
     return (
         <div className="Home Has-NavBar-container" onScroll={handleScroll}>
-            <NavBar search={setSearch} lengthSearch={3}/>
+            <NavBar search={setSearch} lengthSearch={3} />
             <div className="body-container">
-                <FilmsLayout films={films}  add={true} callback={callback} />
+                <FilmsLayout films={films} add={logged} callback={callback} />
                 {roll &&
                     <div className="roll">
                         <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />

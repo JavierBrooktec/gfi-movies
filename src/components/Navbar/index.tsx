@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { LogedContext } from '../../App';
+
 
 import useToggle from '../../hooks/useToggle';
 import useInput from '../../hooks/useInput';
 
+import {logOut} from '../../helpers'
+
 import {
     NavLink
 } from "react-router-dom";
+
+import {
+    useHistory
+  } from "react-router-dom";
 
 // Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,9 +33,10 @@ export type NavBarProps = {
 
 }
 
-const NavBar = ({search, lengthSearch = 0, showSearch = true }: NavBarProps) => {
+const NavBar = ({ search, lengthSearch = 0, showSearch = true }: NavBarProps) => {
 
 
+    const { logged, setLogged } = useContext(LogedContext);
 
     const [showLinks, toggleShowLinks] = useToggle();
 
@@ -45,6 +54,16 @@ const NavBar = ({search, lengthSearch = 0, showSearch = true }: NavBarProps) => 
         search(title);
     }
 
+    const handleLogOut = () => {
+
+        logOut();
+        setLogged(false);
+
+        
+        history.replace('/');
+    }
+
+    let history = useHistory();
 
     return (
         <nav className="Navbar menu-parent">
@@ -71,15 +90,16 @@ const NavBar = ({search, lengthSearch = 0, showSearch = true }: NavBarProps) => 
                     <li className="link">
                         <NavLink exact={true} activeClassName="is-active" to="/favourites">Favourites</NavLink>
                     </li>
-                    <li className="link">
-                        <NavLink exact={true} activeClassName="is-active" to="/Sign In">Sign In</NavLink>
+                    {!logged && <li className="link">
+                        <NavLink exact={true} activeClassName="is-active-no-display" to="/SignUp">Sign up</NavLink>
+                    </li>}
+                    {!logged ? <li className="link">
+                        <NavLink exact={true} activeClassName="is-active-no-display" to="/login">Login</NavLink>
                     </li>
-                    <li className="link">
-                        <NavLink exact={true} activeClassName="is-active" to="/login">Login</NavLink>
-                    </li>
-                    <li className="link">
-                        <NavLink activeClassName="is-active" to="/Log out">Log Out</NavLink>
-                    </li>
+                        :
+                        <li className="link">
+                            <button type={"button"} className="button button-logOut" onClick={handleLogOut}>Log Out</button>
+                        </li>}
                 </ul>
             </div>
         </nav>

@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import {LogedContext} from '../../App';
+
 
 import {
     useParams
@@ -17,9 +19,15 @@ import NavBar from '../../components/Navbar';
 
 
 
+
+
+
+
 const Film = () => {
 
     let { id } = useParams();
+    const {logged} = useContext(LogedContext);
+
 
 
     const [film, setFilm]: any[] = useState(null);
@@ -87,7 +95,7 @@ const Film = () => {
             <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />
             <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />
             <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />
-        </div> : <FilmDetail {...film} callback={callback}/>;
+        </div> : <FilmDetail {...film} add={logged} remove={logged} callback={callback}/>;
 
 
     const body = error ? <h1>Sorry we dont have data for that id</h1> : content;

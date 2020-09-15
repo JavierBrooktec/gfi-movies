@@ -7,7 +7,7 @@ export type filmType = {
 };
 
 
-export type response = {
+export type responseType = {
     Response: string,
     Search: filmType[],
     totalResults: number,
