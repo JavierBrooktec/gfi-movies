@@ -5,14 +5,14 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../../components/Navbar';
 import FilmsLayout from '../../components/FilmsLayout';
 
-import {addToFav} from '../../helpers'
+import { addToFav, getlastSearch, addlastSearch } from '../../helpers'
 
 
 import {
     faFilm
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {filmType, response} from '../../types';
+import { filmType, response } from '../../types';
 
 
 
@@ -31,11 +31,13 @@ const Movies = () => {
     const [roll, setRoll] = useState(false);
     const [end, setEnd] = useState(false);
 
+    const [notification, setNotification] = useState('');
 
-    const callback = (type:string, id:string) => {
+
+    const callback = (type: string, id: string) => {
         addToFav(id);
+        setNotification('show');
     }
-
 
 
 
@@ -59,6 +61,20 @@ const Movies = () => {
         }
         return data;
     }
+
+
+
+
+    useEffect(() => {
+        if(notification==='show'){
+            setTimeout(() => {
+                setNotification('hide');
+                setTimeout(() => {
+                    setNotification('');
+                }, 600);
+            }, 1000);
+        }
+    }, [notification]);
 
 
     useEffect(() => {
@@ -86,21 +102,25 @@ const Movies = () => {
         setRoll(false);
     }, [search]);
 
-
-
-
-
-
+    
     return (
         <div className="Home Has-NavBar-container" onScroll={handleScroll}>
-            <NavBar search={setSearch} />
-            <FilmsLayout films={films} search={search} add={true} callback={callback}/>
-            {roll &&
-                <div className="roll">
-                    <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />
-                    <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />
-                    <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />
-                </div>}
+            <NavBar search={setSearch} lengthSearch={3}/>
+            <div className="body-container">
+                <FilmsLayout films={films}  add={true} callback={callback} />
+                {roll &&
+                    <div className="roll">
+                        <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />
+                        <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />
+                        <FontAwesomeIcon className="roll-icon shaking" icon={faFilm} />
+                    </div>}
+            </div>
+            <div className="notification-container" id="notification-container">
+
+                <div className={`notification notification-success ${notification}`}>
+                    <strong>Success : </strong> added to favourites.
+	            </div>
+            </div>
         </div>
     )
 }

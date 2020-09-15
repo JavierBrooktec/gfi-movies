@@ -1,3 +1,7 @@
+
+
+import { response } from '../types';
+
 export const  addToFav = (id:string) => {
     const previousData = window.localStorage.getItem("favourites");
 
@@ -16,6 +20,13 @@ export const  addToFav = (id:string) => {
 
 }
 
+
+export const  addlastSearch = (search:string) => {
+        window.sessionStorage.setItem('lastSearch', search);
+}
+export const  getlastSearch = () =>  window.sessionStorage.getItem("lastSearch");
+
+
 export const removeFromFav = (id:string) => {
     const previousData = window.localStorage.getItem("favourites");
 
@@ -31,6 +42,16 @@ export function getRandomFilm(films: string[]):string {
 
     return films[rand];
 
+}
+
+export  async function getMoviebyId(id: string): Promise<response> {
+    const { REACT_APP_API_KEY } = process.env;
+    let response = await fetch(`http://www.omdbapi.com/?apikey=${REACT_APP_API_KEY}&i=${id}`);
+    let data = await response.json();
+    if (data.Response !== 'True') {
+        throw new Error(data.Error);
+    }
+    return data;
 }
 
 

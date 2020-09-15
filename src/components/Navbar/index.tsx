@@ -18,22 +18,31 @@ import {
 
 import './Navbar.scss'
 
-const NavBar = (props) => {
+export type NavBarProps = {
+    search?: any,
+    lengthSearch?: number,
+    showSearch?: boolean,
+
+}
+
+const NavBar = ({search, lengthSearch = 0, showSearch = true }: NavBarProps) => {
+
+
 
     const [showLinks, toggleShowLinks] = useToggle();
 
-    const [title, setInputTitle, handleEnterTitle] = useInput('', props.search);
+    const [title, setInputTitle, handleEnterTitle] = useInput('', search);
 
-    const handleChangeInput = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputTitle(e);
-        if(e.target.value.length > 2){
-            props.search(e.target.value);
+        if (e.target.value.length >= lengthSearch) {
+            search(e.target.value);
         }
     }
 
-    const handleClickSubmit = (e: React.MouseEvent) => {        
+    const handleClickSubmit = (e: React.MouseEvent) => {
         e.preventDefault();
-        props.search(title);
+        search(title);
     }
 
 
@@ -44,10 +53,11 @@ const NavBar = (props) => {
                     <FontAwesomeIcon icon={faFilm} />
                 </NavLink>
 
-                <form className="form">
+
+                {showSearch && <form className="form">
                     <input type="search" autoFocus placeholder="Search..." aria-label="Search" value={title} onChange={handleChangeInput} onKeyDown={handleEnterTitle} />
                     <button className="search" type="submit" onClick={handleClickSubmit}><FontAwesomeIcon icon={faSearch} /></button>
-                </form>
+                </form>}
 
 
                 <button className="menu-button" type="button" onClick={toggleShowLinks}>
@@ -56,16 +66,19 @@ const NavBar = (props) => {
                 </button>
                 <ul className={`menu ${showLinks ? 'toggled' : ''}`}>
                     <li className="link">
-                        <NavLink activeClassName="is-active" to="/login">Login</NavLink>
+                        <NavLink exact={true} activeClassName="is-active" to="/">Home</NavLink>
                     </li>
                     <li className="link">
-                        <NavLink activeClassName="is-active" to="/favourites">Favourites</NavLink>
+                        <NavLink exact={true} activeClassName="is-active" to="/favourites">Favourites</NavLink>
                     </li>
                     <li className="link">
-                        <NavLink  activeClassName="is-active" to="/favourites">Sign In</NavLink>
+                        <NavLink exact={true} activeClassName="is-active" to="/Sign In">Sign In</NavLink>
                     </li>
                     <li className="link">
-                        <NavLink activeClassName="is-active" to="/favourites">Log Out</NavLink>
+                        <NavLink exact={true} activeClassName="is-active" to="/login">Login</NavLink>
+                    </li>
+                    <li className="link">
+                        <NavLink activeClassName="is-active" to="/Log out">Log Out</NavLink>
                     </li>
                 </ul>
             </div>

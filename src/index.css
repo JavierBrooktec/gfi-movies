@@ -10,7 +10,7 @@ body,
 
 body {
   background-image: url('./assets/cine-background.jpg');
-  background-color: rgba(48, 56, 73, 0.7);
+  background-color: rgba(48, 56, 73, 0.8);
   background-repeat: initial;
   background-size: 200px 200px;
 
@@ -22,7 +22,6 @@ body {
   line-height: 1.8;
   font-family: 'Merriweather', serif;
   color: #ffffff;
-
 }
 
 @media only screen and (min-width: 750px) {
@@ -36,13 +35,13 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
 }
 
 .button {
   background-color: transparent;
-  padding: .25em .5em;
-  border-radius: .25em;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
   color: white;
   border-color: white;
   border: 2px solid;
@@ -55,14 +54,97 @@ a:hover {
   border-color: var(--color-primary);
 }
 
-
 .Has-NavBar-container {
   width: 100%;
   max-height: 100vh;
   overflow-y: scroll;
   padding-top: 4em;
+}
 
-  @media only screen and (min-width: 750px) {
+@media only screen and (min-width: 750px) {
+  .Has-NavBar-container {
     padding-top: 5em;
   }
+}
+
+.body-container {
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 2em;
+}
+
+
+.notification-container{
+	position: fixed;
+	top: 15px;
+	right: 15px;
+	width: 500px;
+  max-width: calc(100% - 30px);
+  padding-top: 5em;
+  z-index: 1;
+}
+
+.notification{
+
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 3px 6px rgb(0, 0, 0, 0.2), 0 3px 6px rgb(0, 0, 0, 0.3);
+	color: #fff;
+	font-size: 14px;
+	padding: 15px 20px;
+	line-height: 20px;
+  margin-bottom: 15px;
+  display: none;
+	
+}
+
+@keyframes grow{
+	from {
+		opacity: 0;
+		transform: scale(0.5);
+	}
+	to{
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.notification.hide{
+  display: block;
+  animation: shrink 0.4s ease-out forwards;
+  
+}
+.notification.show{
+  display: block;
+  animation: grow 0.5s ease-in forwards;
+}
+
+
+@keyframes shrink{
+	to{
+		opacity: 0;
+		transform: scale(0.6);
+	}
+}
+
+.notification strong{
+	font-size: 12px;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+}
+
+.notification-info{
+	background-color: #00cae3;
+}
+
+.notification-success{
+	background-color: #55b559;
+}
+
+.notification-warning{
+	background-color: #ff9e0f;
+}
+.notification-danger{
+	background-color: #f55145;
 }

@@ -1,6 +1,9 @@
 import React from 'react'
 import noPosterFound from '../../assets/no-poster.jpg'
 import './FilmCard.scss';
+import {
+    useHistory
+} from 'react-router-dom'
 
 export type FilmCardProps = {
     id: string,
@@ -15,14 +18,21 @@ export type FilmCardProps = {
 
 const FilmCard = ({ id, poster, title, year, add = false, remove = false, callback }: FilmCardProps) => {
 
+    const history = useHistory();
+
     const posterSource = poster === 'N/A' ? noPosterFound : poster;
 
     const handleCallback = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-            callback(e.currentTarget.name, id);
+        callback(e.currentTarget.name, id);
+        e.stopPropagation();
+    }
+
+    const redirectToFilm = () => {
+        history.push(`/film/${id}`);
     }
 
     return (
-        <div className="flip-card">
+        <div className="flip-card" onClick={redirectToFilm}>
             <div className="flip-card-inner">
                 <div className="flip-card-front">
                     <img src={posterSource} alt={`poster-${title}`} className="flip-card-img" />

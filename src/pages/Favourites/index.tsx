@@ -3,27 +3,21 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../../components/Navbar';
 import FilmsLayout from '../../components/FilmsLayout';
 
-import { filmType, response } from '../../types';
+import { filmType } from '../../types';
 
-import {addToFav, removeFromFav} from '../../helpers'
+import { addToFav, removeFromFav, getMoviebyId } from '../../helpers'
+
+import './Favourites.scss';
 
 const Favourites = () => {
 
     const [films, setFilms]: any[] = useState([]);
     const [search, setSearch] = useState('');
+    const [notification, setNotification] = useState('');
 
-    async function getFavouriteMovie(id: string): Promise<response> {
-        const { REACT_APP_API_KEY } = process.env;
-        let response = await fetch(`http://www.omdbapi.com/?apikey=${REACT_APP_API_KEY}&i=${id}`);
-        let data = await response.json();
-        if (data.Response !== 'True') {
-            throw new Error(data.Error);
-        }
-        return data;
-    }
-    
 
-    const callback = (type:string, id:string) => {
+
+    const callback = (type: string, id: string) => {
 
         switch (type) {
             case 'add':
@@ -37,18 +31,32 @@ const Favourites = () => {
         }
     }
 
-    const callBackAddtoFav = (id:string) => {
+
+    const callBackAddtoFav = (id: string) => {
         addToFav(id);
-        // const newFilm = getFavouriteMovie(id);
+        // const newFilm = getMoviebyId(id);
         // newFilm.then((f) => [...films, f]).catch(console.warn);
     }
 
-    const callBackRemoveFromFav = (id:string) => {
-        console.log('holaa');
+    const callBackRemoveFromFav = (id: string) => {
         removeFromFav(id);
-        const newFilms = films.filter((film:filmType) => film.imdbID !== id);
+        const newFilms = films.filter((film: filmType) => film.imdbID !== id);
         setFilms(newFilms);
+        setNotification('show');
     }
+
+    useEffect(() => {
+        if(notification === 'show'){
+            setTimeout(() => {
+                setNotification('hide');
+                setTimeout(() => {
+                    setNotification('');
+                }, 600);
+            }, 1000);
+        }
+    }, [notification]);
+
+    
 
     useEffect(() => {
         const previousData = window.localStorage.getItem("favourites");
@@ -56,7 +64,7 @@ const Favourites = () => {
         if (previousData) {
             const data: string[] = JSON.parse(previousData);
 
-            const filmsArr = Promise.all(data.map((id) => getFavouriteMovie(id)));
+            const filmsArr = Promise.all(data.map((id) => getMoviebyId(id)));
 
             filmsArr.then(setFilms).catch(console.warn);
         }
@@ -66,9 +74,16 @@ const Favourites = () => {
 
     return (
         <div className="Favourites Has-NavBar-container" >
-            <NavBar search={setSearch} />
-            <FilmsLayout films={films} search={search} remove={true} callback={callback}  />
-
+            <div className="body-container">
+                <NavBar search={setSearch} />
+                <h1 className="Favourites-title">Your favourites <span role="img">♥️</span></h1>
+                <FilmsLayout films={films} search={search} remove={true} callback={callback} />
+            </div>
+            <div className="notification-container" id="notification-container">
+                <div className={`notification notification-warning ${notification}`}>
+                    <strong>Success : </strong> removed from favourites.
+	            </div>
+            </div>
         </div>
     )
 }
