@@ -84,7 +84,7 @@ export const signUp = (name: string, password: string) => {
         window.sessionStorage.setItem('user', JSON.stringify({ name, password }));
         return [true, 'singed Up'];
     } else {
-        return [false, 'You are alreafy singed Up'];
+        return [false, 'You are already singed Up'];
     }
 
 }
